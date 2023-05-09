@@ -14,6 +14,8 @@ Because looking at data without any kind of highlighting is just painful.
 
 No, it's great!
 
+[[./screenshot.png]]
+
 ** Features
 
 1. syntax highlighting (or font-locking in emacs speak)
