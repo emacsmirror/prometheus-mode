@@ -1,3 +1,41 @@
 * Prometheus for emacs
 
-Syntax highlighting.
+This will eventually (possibly?) contain a set of modes for working with Prometheus in emacs.
+
+For now, it only has =prometheus-data-mode= which is a read-only mode for looking at data/metrics from prometheus exporters.
+
+It does look a little like angry fruit-salad with the current font-locking and I am very open to improvements.
+
+** Why?
+
+Because looking at data without any kind of highlighting is just painful.
+
+** Is it good?
+
+No, it's great!
+
+** Features
+
+1. syntax highlighting (or font-locking in emacs speak)
+2. imenu support
+3. magic file detection
+
+It might be a good idea to add =eldoc= support.
+
+** Installation
+
+*Doom*
+#+CAPTION: packages.el
+#+begin_src elisp
+(package! prometheus-mode
+  :recipe (:host gitlab :repo "peterhoeg/prometheus-mode"))
+#+end_src
+
+#+CAPTION: config.el
+#+begin_src elisp
+(use-package prometheus-mode
+  :defer t)
+#+end_src
+
+*MELPA*
+Yeah, I should probably do that too.
