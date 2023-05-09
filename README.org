@@ -1,0 +1,3 @@
+* Prometheus for emacs
+
+Syntax highlighting.
