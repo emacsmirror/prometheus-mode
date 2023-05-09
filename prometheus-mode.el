@@ -32,13 +32,18 @@
 
 (add-hook 'prometheus-mode-hook #'display-line-numbers-mode)
 (add-hook 'prometheus-mode-hook (lambda ()
-                                  (setq imenu-generic-expression '(("Item" "^# HELP *\\(.*\\)" 1)))))
+                                  (setq imenu-generic-expression `(
+                                                                   ("Item" ,(rx bol "#" (optional space) "HELP" space (group (one-or-more ascii))) 1)
+                                                                   ("Type" ,(rx bol "#" (optional space) "TYPE" space (group (one-or-more ascii))) 1)))))
 
 (define-generic-mode 'prometheus-mode
   '()
   '()
-  `(("^\\([a-zA-Z]+\\)[{\s]+" . (1 'font-lock-keyword-face))
-    ("^# [A-Z]+ \\([a-zA-Z]+\\) " . (1 'font-lock-keyword-face))
+  `((,(rx bol
+          (optional
+           "#" (optional space) (or "HELP" "TYPE") space)
+          (group (one-or-more (any alphanumeric "_")))
+          (or space "{")) . (1 'font-lock-keyword-face))
     ("[{,]\\([a-zA-Z]+\\)=" . 'font-lock-variable-name-face)
     ("[0-9]+" . 'font-lock-constant-face)
     (,(regexp-opt '("HELP" "TYPE") 'words) . 'font-lock-builtin-face)
