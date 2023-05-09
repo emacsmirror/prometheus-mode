@@ -45,26 +45,31 @@
 
   (setq-local comment-start "#"
               comment-end ""
-              font-lock-defaults `((
-                                    (,(rx bol
-                                          "#" (optional space) "HELP" space
-                                          (one-or-more (any alphanumeric "_"))
-                                          space
-                                          (group (one-or-more (any alphanumeric blank punctuation)))
-                                          eol
-                                          ) . (1 'font-lock-comment-face))
-                                    (,(rx bol
-                                          (optional
-                                           "#" (optional space) (or "HELP" "TYPE") space)
-                                          (group (one-or-more (any alphanumeric "_")))
-                                          (or space "{")) . (1 'font-lock-keyword-face))
+              font-lock-defaults `(((,(rx
+                                       bol
+                                       "#" (optional space) "HELP" space
+                                       (one-or-more (any alphanumeric "_")) space
+                                       (group (one-or-more (any alphanumeric blank punctuation)))
+                                       eol) . (1 'font-lock-comment-face))
+                                    (,(rx
+                                       bol
+                                       "#" (optional space) "TYPE" space
+                                       (one-or-more (any alphanumeric "_")) space
+                                       (group (or "counter" "gauge" "summary" "untyped"))
+                                       (optional space)
+                                       eol) .(1 'font-lock-type-face))
+                                    (,(rx
+                                       bol
+                                       (optional
+                                        "#" (optional space) (or "HELP" "TYPE") space)
+                                       (group (one-or-more (any alphanumeric "_")))
+                                       (or space "{")) . (1 'font-lock-keyword-face))
                                     (,(rx
                                        (or "{" ",")
                                        (group (one-or-more (any alphanumeric "_")))
                                        "=") . 'font-lock-variable-name-face)
                                     (,(rx (group (one-or-more (any digit ".")))) . 'font-lock-constant-face)
                                     (,(rx (or "HELP" "TYPE")) . 'font-lock-builtin-face)
-                                    (,(rx (or "counter" "gauge" "summary" "untyped")) . 'font-lock-type-face)
                                     ))
               imenu-sort-function #'imenu--sort-by-name
               imenu-create-index-function #'prometheus-mode--build-imenu
