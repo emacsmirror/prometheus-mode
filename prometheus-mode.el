@@ -31,6 +31,8 @@
   (run-hooks 'prometheus-mode-hook))
 
 (add-hook 'prometheus-mode-hook #'display-line-numbers-mode)
+(add-hook 'prometheus-mode-hook (lambda ()
+                                  (setq imenu-generic-expression '(("Item" "^# HELP *\\(.*\\)" 1)))))
 
 (define-generic-mode 'prometheus-mode
   '()
