@@ -22,35 +22,45 @@
 
 ;;; Code:
 
-(require 'generic-x)
+(require 'imenu)
+(require 'rx)
 
-(defvar prometheus-mode-hook nil "Prometheus hooks.")
+(defun prometheus-mode--build-imenu ()
+  "Build imenu."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (setq imenu-generic-expression `((nil
+                                      ,(if (re-search-forward (rx bol "#" (optional space) "HELP") nil 'noerror)
+                                           (rx bol "#" (optional space) "HELP" space (group (one-or-more (any alnum blank punct))) eol)
+                                         (rx bol "#" (optional space) "TYPE" space (group (one-or-more (any alnum blank punct))) eol))
+                                      1))))
+  (imenu--generic-function imenu-generic-expression))
 
-(defun prometheus-mode-h ()
-  "Run hooks for Prometheus sub modes."
-  (run-hooks 'prometheus-mode-hook))
+;;;###autoload
+(define-derived-mode prometheus-mode fundamental-mode "Prometheus"
+  "Major mode for viewing Prometheus data files."
 
-(add-hook 'prometheus-mode-hook #'display-line-numbers-mode)
-(add-hook 'prometheus-mode-hook (lambda ()
-                                  (setq imenu-generic-expression `(
-                                                                   ("Item" ,(rx bol "#" (optional space) "HELP" space (group (one-or-more ascii)) eol) 1)
-                                                                   ("Type" ,(rx bol "#" (optional space) "TYPE" space (group (one-or-more ascii)) eol) 1)))))
-
-(define-generic-mode 'prometheus-mode
-  '()
-  '()
-  `((,(rx bol
-          (optional
-           "#" (optional space) (or "HELP" "TYPE") space)
-          (group (one-or-more (any alphanumeric "_")))
-          (or space "{")) . (1 'font-lock-keyword-face))
-    ("[{,]\\([a-zA-Z]+\\)=" . 'font-lock-variable-name-face)
-    ("[0-9]+" . 'font-lock-constant-face)
-    (,(regexp-opt '("HELP" "TYPE") 'words) . 'font-lock-builtin-face)
-    (,(regexp-opt '("counter" "gauge") 'words) . 'font-lock-type-face))
-  nil
-  '(prometheus-mode-h)
-  "A mode for Prometheus files.")
+  (setq-local comment-start "#"
+              comment-end ""
+              font-lock-defaults `((
+                                    (,(rx bol
+                                          (optional
+                                           "#" (optional space) (or "HELP" "TYPE") space)
+                                          (group (one-or-more (any alphanumeric "_")))
+                                          (or space "{")) . (1 'font-lock-keyword-face))
+                                    (,(rx
+                                       (or "{" ",")
+                                       (group (one-or-more (any alphanumeric "_")))
+                                       "=") . 'font-lock-variable-name-face)
+                                    (,(rx (group (one-or-more (any digit ".")))) . 'font-lock-constant-face)
+                                    (,(rx (or "HELP" "TYPE")) . 'font-lock-builtin-face)
+                                    (,(rx (or "counter" "gauge")) . 'font-lock-type-face)
+                                    ))
+              imenu-sort-function #'imenu--sort-by-name
+              imenu-create-index-function #'prometheus-mode--build-imenu
+              imenu-max-item-length nil)
+  (add-hook 'prometheus-mode-hook #'display-line-numbers-mode))
 
 (provide 'prometheus-mode)
 
