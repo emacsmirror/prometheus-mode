@@ -37,7 +37,7 @@
   '()
   `(("^\\([a-zA-Z]+\\)[{\s]+" . (1 'font-lock-keyword-face))
     ("^# [A-Z]+ \\([a-zA-Z]+\\) " . (1 'font-lock-keyword-face))
-    ("{\\([a-zA-Z]+\\)=" . (1 'font-lock-variable-name-face))
+    ("[{,]\\([a-zA-Z]+\\)=" . 'font-lock-variable-name-face)
     ("[0-9]+" . 'font-lock-constant-face)
     (,(regexp-opt '("HELP" "TYPE") 'words) . 'font-lock-builtin-face)
     (,(regexp-opt '("counter" "gauge") 'words) . 'font-lock-type-face))
