@@ -33,8 +33,8 @@
 (add-hook 'prometheus-mode-hook #'display-line-numbers-mode)
 (add-hook 'prometheus-mode-hook (lambda ()
                                   (setq imenu-generic-expression `(
-                                                                   ("Item" ,(rx bol "#" (optional space) "HELP" space (group (one-or-more ascii))) 1)
-                                                                   ("Type" ,(rx bol "#" (optional space) "TYPE" space (group (one-or-more ascii))) 1)))))
+                                                                   ("Item" ,(rx bol "#" (optional space) "HELP" space (group (one-or-more ascii)) eol) 1)
+                                                                   ("Type" ,(rx bol "#" (optional space) "TYPE" space (group (one-or-more ascii)) eol) 1)))))
 
 (define-generic-mode 'prometheus-mode
   '()
