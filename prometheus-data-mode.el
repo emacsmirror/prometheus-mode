@@ -9,7 +9,7 @@
 ;; Version: 0.0.1
 ;; Keywords: languages
 ;; Homepage: https://hoeg.com
-;; Package-Requires: ((emacs "24.3"))
+;; Package-Requires: ((emacs "26.1"))
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -72,8 +72,7 @@
                                        (group (one-or-more (any alphanumeric "_")))
                                        "=") . 'font-lock-variable-name-face)
                                     (,(rx (group (one-or-more (any digit ".")))) . 'font-lock-constant-face)
-                                    (,(rx (or "HELP" "TYPE")) . 'font-lock-builtin-face)
-                                    ))
+                                    (,(rx (or "HELP" "TYPE")) . 'font-lock-builtin-face)))
               imenu-sort-function #'imenu--sort-by-name
               imenu-create-index-function #'prometheus-data-mode--build-imenu
               imenu-max-item-length nil)
