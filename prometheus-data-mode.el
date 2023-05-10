@@ -31,8 +31,7 @@
 (require 'imenu)
 
 (defun prometheus-data-mode--build-imenu ()
-  "Build prometheus-data-mode imenu."
-  (interactive)
+  "Build `prometheus-data-mode' imenu."
   (save-excursion
     (goto-char (point-min))
     (setq imenu-generic-expression `((nil
@@ -44,7 +43,7 @@
 
 ;;;###autoload
 (define-derived-mode prometheus-data-mode fundamental-mode "PrometheusData"
-  "Major mode for viewing Prometheus data files."
+  "Major mode for viewing files containing Prometheus metrics data."
 
   (setq-local comment-start "#"
               comment-end ""
@@ -81,7 +80,6 @@
 
   (add-hook 'prometheus-data-mode-hook
             (lambda ()
-              (run-hooks 'prometheus-mode-hook)
               (when (bound-and-true-p prometheus-mode-line-numbers)
                 (display-line-numbers-mode))
               (read-only-mode))))
