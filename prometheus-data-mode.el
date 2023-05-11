@@ -81,6 +81,7 @@
             (lambda ()
               (when (bound-and-true-p prometheus-mode-line-numbers)
                 (display-line-numbers-mode))
+              (setq-local view-read-only 't)
               (read-only-mode))))
 
 (provide 'prometheus-data-mode)
