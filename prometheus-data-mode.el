@@ -9,7 +9,6 @@
 ;; Version: 0.0.1
 ;; Keywords: languages
 ;; Homepage: https://hoeg.com
-;; Package-Requires: ((emacs "26.1"))
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
