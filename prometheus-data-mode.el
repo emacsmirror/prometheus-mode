@@ -15,8 +15,7 @@
 ;;
 ;;; License:
 ;;
-;; You can redistribute this program and/or modify it under the terms of the GNU
-;; General Public License version 2.
+;; SPDX-License-Identifier: GPL-3.0-or-later
 ;;
 ;;; Commentary:
 ;;
