@@ -6,7 +6,6 @@
 ;; Maintainer: Peter Hoeg <peter@hoeg.com>
 ;; Created: May 09, 2023
 ;; Modified: May 09, 2023
-;; Version: 0.0.1
 ;; Keywords: languages
 ;; Homepage: https://hoeg.com
 ;;

@@ -38,8 +38,4 @@
 
 (provide 'prometheus-mode)
 
-;; Local Variables:
-;; coding: utf-8
-;; End:
-
 ;;; prometheus-mode.el ends here
