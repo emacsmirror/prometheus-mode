@@ -6,7 +6,7 @@
 ;; Created: 2023
 ;; Version: 0.0.1
 ;; Keywords: languages
-;; Homepage: https://hoeg.com
+;; Homepage: https://gitlab.com/peterhoeg/prometheus-mode
 ;; Package-Requires: ((emacs "26.1"))
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
