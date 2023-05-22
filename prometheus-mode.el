@@ -8,12 +8,9 @@
 ;; Keywords: languages
 ;; Homepage: https://hoeg.com
 ;; Package-Requires: ((emacs "26.1"))
+;; SPDX-License-Identifier: GPL-3.0-or-later
 
 ;; This file is not part of GNU Emacs.
-
-;;; License:
-;;
-;; SPDX-License-Identifier: GPL-3.0-or-later
 
 ;;; Commentary:
 ;;

@@ -7,13 +7,10 @@
 ;; Created: May 09, 2023
 ;; Modified: May 09, 2023
 ;; Keywords: languages
-;; Homepage: https://hoeg.com
+;; Homepage: https://gitlab.com/peterhoeg/prometheus-mode
+;; SPDX-License-Identifier: GPL-3.0-or-later
 ;;
 ;; This file is not part of GNU Emacs.
-;;
-;;; License:
-;;
-;; SPDX-License-Identifier: GPL-3.0-or-later
 ;;
 ;;; Commentary:
 ;;
