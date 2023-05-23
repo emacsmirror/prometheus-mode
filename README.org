@@ -1,3 +1,5 @@
+[[https://melpa.org/#/prometheus-mode][https://melpa.org/packages/prometheus-mode-badge.svg]]
+
 * Prometheus for emacs
 
 This will eventually (possibly?) contain a set of modes for working with Prometheus in emacs.
