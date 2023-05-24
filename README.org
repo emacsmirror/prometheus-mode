@@ -28,22 +28,16 @@ It might be a good idea to add =eldoc= support.
 
 ** Installation
 
-*Doom*
+*MELPA*\\
+We're on [[https://melpa.org/#/prometheus-mode][MELPA]], so pick your poison.
+
+*Doom*\\
 #+CAPTION: packages.el
 #+begin_src emacs-lisp
-(package! prometheus-mode
-  :recipe (:host gitlab :repo "peterhoeg/prometheus-mode"))
+(package! prometheus-mode)
 #+end_src
 
 #+CAPTION: config.el
 #+begin_src emacs-lisp
-(use-package prometheus-mode
-  :defer t)
+(use-package prometheus-mode :defer t)
 #+end_src
-
-*MELPA*\\
-Yeah, I should probably do that too.
-
-** Contributing
-
-I'm very open to PRs. For any regexp changes, please use =(rx)=, which while being far more verbose than just straight up regexps in strings, is much nicer to read.
